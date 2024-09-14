@@ -1,0 +1,74 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-12">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a routerLink="/admin/dashboard">Home</a></li>
+            <li class="breadcrumb-item"><a routerLink="/admin/orders">Orders</a></li>
+            <li class="breadcrumb-item active">Order Details</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+
+      <!-- Main row -->
+      <div class="row">
+        <div *ngIf="isLoading">Loading...</div>
+        <div *ngIf="error">{{ error }}</div>
+        <div *ngIf="order">
+          <p><strong>Order ID:</strong> {{ order.id }}</p>
+          <p><strong>Address:</strong> {{ order.address }}</p>
+          <p><strong>Amount:</strong> {{ order.total_amount }}</p>
+          <p><strong>Status:</strong>
+            <span [ngClass]="{
+              'badge-success': order.status === 'SHIPPED',
+              'badge-warning': order.status === 'PENDING',
+              'badge-danger': order.status === 'RETURNED' || order.status === 'CANCELLED',
+              'badge-info': order.status === 'CONFIRMED'
+            }" class="badge">{{ order.status }}
+            </span>
+          </p>
+          <h4>Order Items</h4>
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Amount</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of orderItems">
+              <td>{{ item.id }}</td>
+              <td>{{ item.productResponse.code }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.amount | currency }}</td>
+              <td>
+                <button class="btn btn-sm btn-danger ms-2" (click)="removeOrderItem(item)">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <a (click)="addItem(order)" class="btn btn-primary me-2 mb-5">Add New Item</a>
+          <a routerLink="/admin/orders" class="btn btn-primary mb-5">Back to Orders</a>
+        </div>
+      </div>
+      <!-- /.row -->
+    </div><!--/. container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

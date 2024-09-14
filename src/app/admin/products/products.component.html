@@ -1,0 +1,89 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-12">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a routerLink="/admin/dashboard">Home</a></li>
+            <li class="breadcrumb-item active">Products</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="row">
+                <!-- Search input -->
+                <div class="col-md-8">
+                  <div class="input-group input-group-sm">
+                    <input type="text" name="table_search" [(ngModel)]="searchQuery" class="form-control" placeholder="Search products">
+                    <div class="input-group-append">
+                      <button type="button" class="btn btn-default" (click)="searchProduct()">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!-- Add New button -->
+                <div class="col-md-4 text-right">
+                  <button type="button" class="btn btn-tool" (click)="openAddProductDialog()">
+                    <i class="fas fa-plus"></i> Add New
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive">
+              <table class="table table-hover table-sm">
+                <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <th>Description</th>
+                  <th>Category</th>
+                  <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let product of filteredProducts">
+                  <td><img [src]="product.image_url" alt="{{ product.code }}" style="width: 70px; height: 50px;"></td>
+                  <td>{{ product.code }}</td>
+                  <td>{{ product.price | currency }}</td>
+                  <td class="text-center">{{ product.stock_quantity }}</td>
+                  <td class="text-wrap">{{ product.description }}</td>
+                  <td>{{ categoryMap.get(product.categoryId) }}</td>
+                  <td>
+                    <button class="btn btn-sm btn-warning w-50 me-3 mb-1" (click)="editProduct(product)">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger w-50" (click)="deleteProduct(product)">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+            <mat-paginator [length]="totalProducts" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 50]"
+                           (page)="onPageChange($event)">
+            </mat-paginator>
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+
+</div>

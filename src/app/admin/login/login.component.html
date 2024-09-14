@@ -1,0 +1,39 @@
+<section class="h-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5 mt-lg-5">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+             class="img-fluid" alt="Sample image">
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <form>
+          <div class="divider d-flex justify-content-center my-5">
+            <p class="text-center fw-bold mb-0 mt-lg-5 ">Sign into your account</p>
+          </div>
+
+          <div class="alert alert-danger" role="alert" *ngIf="errorMessages.length">
+            <p *ngFor="let msg of errorMessages">{{msg}}</p>
+          </div>
+
+          <!-- Email input -->
+          <mat-form-field appearance="outline" class="w-100 mb-1">
+            <mat-label>Username</mat-label>
+            <input matInput [(ngModel)]="authRequest.username" name="username" type="text" required>
+          </mat-form-field>
+
+          <!-- Password input -->
+          <mat-form-field appearance="outline" class="w-100 border-2">
+            <mat-label>Password</mat-label>
+            <input matInput [(ngModel)]="authRequest.password" name="password" type="password"required>
+          </mat-form-field>
+
+          <!-- Login button -->
+          <div class="text-center text-lg-start">
+            <button mat-raised-button class="btn btn-lg" (click)="login()" [disabled]="!this.authRequest.username || !this.authRequest.password">Login</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

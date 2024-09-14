@@ -1,0 +1,84 @@
+<mat-toolbar color="primary">
+  <!-- Left side: Logo -->
+  <div class="header-left">
+    <a href="/home" class="header-brand">
+      <img src="https://i.ibb.co/pjhw32D/Brown-Retro-Enjoy-Your-Life-Desktop-Wallpaper-2.png" alt="Alideco" class="logo">
+    </a>
+  </div>
+
+  <!-- Center: Menu Items (Visible on larger screens) -->
+  <div class="header-center" fxHide fxShow.gt-sm>
+    <ul class="header-list">
+      <li><a mat-button routerLink="/home" routerLinkActive="active">Accueil</a></li>
+      <li><a mat-button routerLink="/collections" routerLinkActive="active">Collections</a></li>
+      <li><a mat-button routerLink="/product-list" routerLinkActive="active">Produits</a></li>
+      <li><a mat-button routerLink="/contact-us" routerLinkActive="active">Contactez-nous</a></li>
+    </ul>
+  </div>
+
+  <!-- Right side: Search, Cart, and WhatsApp -->
+  <div class="header-right">
+    <button mat-icon-button (click)="onSearchClick()">
+      <mat-icon>search</mat-icon>
+    </button>
+    <button mat-icon-button [routerLink]="'/cart'">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+    <!-- Menu button for small screens -->
+    <button mat-icon-button (click)="sidenav.toggle()" fxHide.gt-sm>
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<!-- Sidenav for smaller screens -->
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="over" class="sidenav">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="sidenav.close()">Accueil</a>
+      <a mat-list-item routerLink="/collections" routerLinkActive="active" (click)="sidenav.close()">Collections</a>
+      <a mat-list-item routerLink="/product-list" routerLinkActive="active" (click)="sidenav.close()">Produits</a>
+      <a mat-list-item routerLink="/contact-us" routerLinkActive="active" (click)="sidenav.close()">Contactez-Nous</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+    <!-- Footer -->
+    <footer class="footer text-dark py-5 mt-5">
+      <div class="container">
+        <div class="row justify-content-between">
+          <!-- About Section -->
+          <div class="col-12 col-md-4 mb-4 text-center">
+            <h6 class="footer-heading">À propos de nous</h6>
+            <p class="footer-text">Nous nous engageons à fournir les meilleurs produits et services à nos clients. Apprenez-en davantage sur notre entreprise et notre mission.</p>
+            <a href="/about" class="btn btn-outline-dark text-dark">Lire plus</a>
+          </div>
+          <!-- Quick Links -->
+          <div class="col-12 col-md-4 mb-4 text-center">
+            <h6 class="footer-heading">Liens rapides</h6>
+            <ul class="list-unstyled">
+              <li><a mat-list-item routerLink="/home" routerLinkActive="active" (click)="sidenav.close()">Accueil</a></li>
+              <li><a mat-list-item routerLink="/collections" routerLinkActive="active" (click)="sidenav.close()">Collections</a></li>
+              <li><a mat-list-item routerLink="/product-list" routerLinkActive="active" (click)="sidenav.close()">Produits</a></li>
+              <li><a mat-list-item routerLink="/contact-us" routerLinkActive="active" (click)="sidenav.close()">Contactez-Nous</a></li>
+            </ul>
+          </div>
+          <!-- Policies -->
+          <div class="col-12 col-md-4 mb-4 text-center">
+            <h6 class="footer-heading">Politiques</h6>
+            <ul class="list-unstyled">
+              <li><a mat-list-item routerLink="/terms-of-use" routerLinkActive="active" (click)="sidenav.close()" class="text-wrap">Conditions d'utilisation</a></li>
+              <li><a mat-list-item routerLink="/return-exchange" routerLinkActive="active" (click)="sidenav.close()" class="text-wrap">Politique de retour et d'échange</a></li>
+              <li><a mat-list-item routerLink="/privacy-policy" routerLinkActive="active" (click)="sidenav.close()" class="text-wrap">Politique de confidentialité</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- Footer Bottom -->
+        <div class="text-center mt-4">
+          <p class="mb-0">&copy; 2024 AKKADECO. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

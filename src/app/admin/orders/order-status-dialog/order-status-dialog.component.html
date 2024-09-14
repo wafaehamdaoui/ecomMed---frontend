@@ -1,0 +1,15 @@
+<!-- order-status-modal.component.html -->
+<h1 mat-dialog-title>Change Order Status</h1>
+<div mat-dialog-content>
+  <form [formGroup]="statusForm">
+    <mat-radio-group formControlName="status">
+      <mat-radio-button *ngFor="let status of statuses" [value]="status">
+        {{ status }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onSave()">Save</button>
+</div>

@@ -1,0 +1,89 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-12">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a routerLink="/admin/dashboard">Home</a></li>
+              <li class="breadcrumb-item active">Clients</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <div class="row">
+                  <!-- Search input -->
+                  <div class="col-md-8">
+                    <div class="input-group input-group-sm">
+                      <input type="text" name="table_search" [(ngModel)]="searchQuery" class="form-control" placeholder="Search Client">
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-default" (click)="searchClient()">
+                          <i class="fas fa-search"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Add New button -->
+                  <div class="col-md-4 text-right">
+                    <button type="button" class="btn btn-tool" (click)="openAddClientDialog()">
+                      <i class="fas fa-plus"></i> Add New
+                    </button>
+                    <!-- Modal Structure -->
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Loyalty Points</th>
+                    <th>Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let client of filteredClients">
+                    <td>{{ client.id }}</td>
+                    <td>{{ client.name }}</td>
+                    <td>{{ client.phone }}</td>
+                    <td>{{ client.loyalty_points }}</td>
+                    <td>
+                      <button class="btn btn-sm btn-warning me-3" (click)="editClient(client)">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-sm btn-danger" (click)="deleteClient(client)">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+              <!-- Pagination -->
+              <mat-paginator [length]="totalClients" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 50]"
+                             (page)="onPageChange($event)">
+              </mat-paginator>
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+
+
+

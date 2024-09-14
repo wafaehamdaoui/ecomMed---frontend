@@ -1,0 +1,90 @@
+<div class="container my-5">
+  <!-- Cart Table -->
+  <div *ngIf="cart.items.length > 0; else emptyCart" class="row">
+    <div class="col-12 col-md-8">
+      <!-- Page Title -->
+      <div class="text-center mb-4">
+        <h3>Votre Panier</h3>
+      </div>
+      <table class="table table-sm">
+        <thead class="table-light">
+        <tr>
+          <th scope="col" colspan="2" class="text-center">Product</th>
+          <th scope="col" class="text-center">Quantity</th>
+          <th scope="col" class="text-end">Total</th>
+          <th scope="col" class="text-center">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of cart.items" class="align-middle">
+          <td class="text-center" style="width: 100px;">
+            <img [src]="item.product.image_url" alt="{{ item.product.code }}" class="img-fluid" style="max-width: 80px;">
+          </td>
+          <td>{{ item.product.code }}</td>
+          <td class="text-center">
+            <div class="d-flex flex-column align-items-center">
+              <button class="btn btn-outline-secondary btn-sm w-100" (click)="increaseQuantity(item)">+</button>
+              <input type="text" class="form-control text-center w-100" [value]="item.quantity" readonly>
+              <button class="btn btn-outline-secondary btn-sm w-100" (click)="decreaseQuantity(item)">-</button>
+            </div>
+          </td>
+          <td class="text-end">{{ item.quantity * item.product.price }} DHs</td>
+          <td class="text-center">
+            <button class="btn btn-danger btn-sm" (click)="removeItem(item)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+      <!-- Clear Cart Button -->
+      <div class="mt-4">
+        <button class="btn btn-outline-danger w-100" (click)="clearCart()">Vider le Panier</button>
+      </div>
+
+      <!-- Continue Shopping Button -->
+      <div class="mt-2">
+        <button class="btn btn-outline-secondary w-100" (click)="continueShopping()">Continuer vos Achats</button>
+      </div>
+    </div>
+
+    <!-- Summary Section -->
+    <div class="col-12 col-md-4">
+      <div class="border p-3">
+        <!-- Sous-total et Section de Paiement -->
+        <div class="d-flex justify-content-between mb-3">
+          <span><strong>Sous-total</strong></span>
+          <span>{{ cart.totalAmount }} DHs</span>
+        </div>
+        <div class="text-muted small mb-3">Frais de livraison et taxes calculés lors du paiement</div>
+
+        <!-- Formulaire d'Informations Client -->
+        <form [formGroup]="formGroup">
+          <div class="mb-3">
+            <label for="clientName" class="form-label">Nom</label>
+            <input type="text" id="clientName" class="form-control" formControlName="clientName">
+          </div>
+          <div class="mb-3">
+            <label for="clientPhone" class="form-label">Téléphone</label>
+            <input type="text" id="clientPhone" class="form-control" formControlName="clientPhone">
+          </div>
+          <div class="mb-3">
+            <label for="clientAddress" class="form-label">Adresse</label>
+            <textarea id="clientAddress" class="form-control" formControlName="clientAddress" rows="2"></textarea>
+          </div>
+        </form>
+
+        <!-- Bouton de Paiement -->
+        <button class="btn btn-primary btn-lg w-100 mt-3" (click)="proceedToCheckout()" [disabled]="formGroup.invalid">Commander</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty Cart Message -->
+  <ng-template #emptyCart>
+    <div class="alert alert-warning text-center">
+      Votre panier est vide.
+    </div>
+  </ng-template>
+</div>

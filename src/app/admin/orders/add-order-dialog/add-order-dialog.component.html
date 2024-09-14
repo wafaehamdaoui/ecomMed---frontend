@@ -1,0 +1,37 @@
+<h4 mat-dialog-title class="text-center">{{ data.id ? 'Edit Order' : 'Add Order' }}</h4>
+<form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <div class="container">
+        <!-- Client Information -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Client</mat-label>
+            <mat-select formControlName="clientId"  required>
+              <mat-option *ngFor="let client of clients" [value]="client.id">
+                {{ client.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Address</mat-label>
+            <input matInput  formControlName="address" required>
+          </mat-form-field>
+
+        <!-- Order Details -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status" required>
+              <mat-option *ngFor="let status of statuses" [value]="status">
+                {{ status }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="orderForm.invalid" (click)="onSubmit()">Save</button>
+  </mat-dialog-actions>
+</form>
+

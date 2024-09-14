@@ -1,0 +1,57 @@
+<h2 mat-dialog-title class="text-center">{{ data.id ? 'Edit Product' : 'Add Product' }}</h2>
+<form (ngSubmit)="onSubmit()" #productForm="ngForm">
+  <mat-dialog-content>
+    <div class="ml-4">
+    <mat-form-field appearance="outline">
+      <mat-label>Product Code</mat-label>
+      <input matInput [(ngModel)]="data.code" name="code" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="ml-4">
+      <mat-label>Category</mat-label>
+      <mat-select [(ngModel)]="data.categoryId" name="categoryId" required>
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    </div>
+
+    <div class="ml-4">
+    <mat-form-field appearance="outline">
+      <mat-label>Price</mat-label>
+      <input matInput type="number" [(ngModel)]="data.price" name="price" required min="1" max="1000000">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="ml-4">
+      <mat-label>Stock Quantity</mat-label>
+      <input matInput type="number" [(ngModel)]="data.stock_quantity" name="stock_quantity" required min="1">
+    </mat-form-field>
+
+    </div>
+
+    <div class="ml-4">
+<!--      <mat-form-field appearance="outline">-->
+<!--        <mat-label>Select image</mat-label>-->
+<!--        <input matInput readonly type="text" id="fakeFileInput" [value]="fileName" (click)="hiddenInput.click()">-->
+<!--        <input hidden type="file" accept="image/*" #hiddenInput (change)="onFileSelected($event)">-->
+<!--        <mat-icon matSuffix>folder_open</mat-icon>-->
+<!--      </mat-form-field>-->
+      <mat-form-field appearance="outline">
+        <mat-label>Image URL</mat-label>
+        <input matInput [(ngModel)]="data.image_url" name="image_url" type="url" required>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline" class="ml-4">
+      <mat-label>Description</mat-label>
+      <textarea matInput [(ngModel)]="data.description" name="description" maxlength="500" required></textarea>
+    </mat-form-field>
+    </div>
+
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!productForm.form.valid">Save</button>
+  </mat-dialog-actions>
+</form>

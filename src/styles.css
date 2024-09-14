@@ -1,0 +1,152 @@
+/* You can add global styles to this file, and also import other style files  */
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* .hero-section */
+.hero-section {
+  background-image: url('https://i.ibb.co/yycbbZ5/Comment-choisir-ses-meubles-de-salon-1.jpg');
+  background-size: cover;
+  background-position: center; /* Center the background image */
+  height: 90vh; /* Use viewport height for responsiveness */
+  /*width: 100%;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.hero-content {
+  /*width: inherit;*/
+  /*height: inherit;*/
+  text-align: center;
+  max-width: 100%; /* Use percentage for adaptability */
+  padding: 1rem; /* Use rem for consistent spacing */
+  background-color: rgba(250, 238, 206, 0.34);
+  color: burlywood;
+}
+.hero-content button{
+  color: burlywood !important;
+}
+
+/* .featured-products */
+.featured-products {
+  background-color: #f8f9fa;
+}
+
+/* .product-info */
+.product-info {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 1rem; /* Use rem for consistent spacing */
+  text-align: center;
+}
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.product-card {
+  width: 100%;
+  max-width: 23.5%;
+  overflow: hidden;
+}
+
+.product-card img {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-card img:hover {
+  transform: scale(1.07); /* This will zoom in the image slightly */
+}
+
+
+mat-card-title {
+  font-size: 1.1rem;
+}
+
+
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.category-card {
+  width: 100%;
+  overflow: hidden;
+  max-width: 32.4%;
+}
+/* .categories */
+.categories {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+/* .whatsapp-icon */
+.whatsapp-icon {
+  position: fixed;
+  bottom: 2rem; /* Use rem for consistent spacing from the bottom */
+  right: 2rem; /* Use rem for consistent spacing from the right */
+  z-index: 1000; /* Ensure it stays on top of other elements */
+  transition: transform 0.3s; /* Smooth hover effect */
+}
+
+.whatsapp-icon img {
+  height: 4rem; /* Use rem for consistent size */
+  width: auto; /* Maintain aspect ratio */
+  border-radius: 50%; /* Optional: makes the icon round */
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.2); /* Use rem for shadow */
+}
+
+/* Hover effect for WhatsApp icon */
+.whatsapp-icon:hover img {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+.contact-section {
+  background-color: #f8f9fa; /* Light background color */
+}
+
+.contact-icon {
+  font-size: 40px;
+  color: #fff;
+}
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+  .hero-section {
+    height: 50vh; /* Adjust height for smaller screens */
+  }
+
+  .hero-content {
+    max-width: 100%; /* Adjust max-width for smaller screens */
+    padding: 1rem; /* Maintain padding */
+  }
+
+  .category-card {
+    width: 100%;
+    max-width: 100%;
+  }
+  .product-card {
+    width: 100%;
+    max-width: 46%;
+  }
+  .footer-heading {
+    font-size: 1.2rem; /* Smaller font for headings */
+  }
+
+  .footer-text {
+    font-size: 0.9rem; /* Smaller font for body text */
+  }
+
+  .footer .btn {
+    width: 100%; /* Make the button full width on smaller screens */
+  }
+
+  .footer {
+    padding: 20px 15px; /* Add padding for small screens */
+  }
+}
+

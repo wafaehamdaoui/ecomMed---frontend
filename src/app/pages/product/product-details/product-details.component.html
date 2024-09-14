@@ -1,0 +1,18 @@
+<div class="container mt-5">
+  <div class="row">
+    <!-- Left Side: Product Image -->
+    <div class="col-md-6">
+      <img src="{{ product.image_url }}" alt="{{ product.code }}" class="img-fluid" />
+    </div>
+
+    <!-- Right Side: Product Details -->
+    <div class="col-md-6 justify-content-between">
+      <div>
+        <h2>{{ product.code }}</h2>
+        <h4 class="text-success">{{ product.price | currency:'MAD':'symbol':'1.0-0' }}</h4>
+        <p>{{ product.description }}</p>
+      </div>
+      <button class="btn btn-primary" (click)="addToCart(product)">Add to Cart</button>
+    </div>
+  </div>
+</div>

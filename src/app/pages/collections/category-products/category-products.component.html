@@ -1,0 +1,18 @@
+<div class="products">
+  <h4 class="text-center mt-3"> {{category.name}} produits</h4>
+  <p class="text-center">Trouvez tout ce que vous voulez</p>
+  <div class="product-grid">
+    <mat-card *ngFor="let product of category.products" class="product-card">
+      <mat-card-header class="justify-content-center">
+        <mat-card-title class="mb-2 text-md">{{ product.code }}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image (click)="productDetails(product)" [src]="product.image_url" alt="{{ product.code }}">
+      <mat-card-content>
+        <p class="mt-3 text-center"><strong>Price: {{ product.price }} DHs</strong></p>
+      </mat-card-content>
+      <mat-card-actions class="justify-content-center">
+        <button mat-button (click)="addToCart(product)">Ajouter au panier</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

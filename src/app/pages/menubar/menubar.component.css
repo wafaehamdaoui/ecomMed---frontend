@@ -1,0 +1,108 @@
+mat-toolbar {
+  background-color: #fff;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-left .logo {
+  height: 6rem; /* Adjust logo size */
+  width: 11rem;
+}
+
+.header-center {
+  flex: 1;
+}
+
+.header-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.header-list li {
+  position: relative;
+  margin: 0 15px;
+}
+
+.header-list a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 10px 15px; /* Add padding for better touch targets */
+  display: flex;
+  align-items: center;
+  transition: color 0.3s, transform 0.3s; /* Smooth transition */
+}
+.list-unstyled a{
+  cursor: pointer;
+}
+
+/* Active item styles */
+.header-list a.active {
+  color: burlywood; /* Primary color for active item */
+  font-weight: 700;
+  border-bottom: 3px solid burlywood; /* Thicker border for active item */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Hover effect for all menu items */
+.header-list a:hover {
+  color: burlywood; /* Primary color on hover */
+  text-decoration: none; /* Remove underline on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Optional: adding a subtle shadow effect for better visual appeal */
+.header-list a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.header-list a:hover::after {
+  opacity: 1;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-right mat-icon {
+  color: #000;
+}
+
+.cart-count {
+  margin-left: 8px;
+  font-weight: 500;
+}
+
+/* Sidenav styles */
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 250px;
+  background-color: #fff;
+}
+
+.mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  background-color: antiquewhite; /* Dark background color */
+}
+
